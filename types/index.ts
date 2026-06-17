@@ -1,79 +1,35 @@
-// Navigation
-export interface NavItem {
-  label: string;
-  href: string;
-}
+export type Priority = 'high' | 'medium' | 'low';
 
-// Features
-export interface Feature {
+export type FilterType = 'all' | 'active' | 'completed';
+
+export interface Todo {
   id: string;
   title: string;
   description: string;
-  icon: string;
-  color: string;
+  completed: boolean;
+  priority: Priority;
+  category: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-// Testimonials
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  content: string;
-  rating: number;
-  avatar: string;
-  avatarColor: string;
+export interface TodoStats {
+  total: number;
+  completed: number;
+  active: number;
+  highPriority: number;
+  completionRate: number;
 }
 
-// Stats
-export interface Stat {
-  id: string;
-  value: string;
-  label: string;
-  description: string;
-  icon: string;
+export interface CategoryStats {
+  category: string;
+  total: number;
+  completed: number;
+  active: number;
+  percentage: number;
 }
 
-// Pricing
-export interface PricingPlan {
-  id: string;
-  name: string;
-  price: number;
-  period: string;
-  description: string;
-  features: string[];
-  cta: string;
-  highlighted: boolean;
-}
-
-// Team
-export interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  avatar: string;
-  color: string;
-}
-
-// Download Button
-export interface DownloadButtonProps {
-  platform: 'ios' | 'android';
+export interface NavLink {
   href: string;
+  label: string;
 }
-
-// App Store Info
-export interface AppStoreInfo {
-  platform: 'ios' | 'android';
-  rating: number;
-  reviews: string;
-  url: string;
-}
-
-// Utility types
-export type ClassValue = string | undefined | null | false | ClassValue[];
-
-// Theme
-export type Theme = 'light' | 'dark' | 'system';
-
-// Platform
-export type Platform = 'ios' | 'android' | 'web' | 'desktop';

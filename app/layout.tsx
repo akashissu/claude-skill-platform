@@ -4,28 +4,14 @@ import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: {
-    default: 'SwiftTask — The Smart Productivity App',
-    template: '%s | SwiftTask',
-  },
-  description:
-    'SwiftTask helps you manage tasks, collaborate with your team, and stay focused. Available on iOS and Android.',
-  keywords: ['productivity', 'task management', 'team collaboration', 'mobile app', 'iOS', 'Android'],
-  authors: [{ name: 'SwiftTask Team' }],
+  title: 'TodoMaster - Organize Your Life',
+  description: 'A powerful todo list application to help you stay organized, productive, and on top of your tasks every day.',
+  keywords: 'todo, task manager, productivity, organize, checklist',
+  authors: [{ name: 'TodoMaster Team' }],
   openGraph: {
+    title: 'TodoMaster - Organize Your Life',
+    description: 'A powerful todo list application to help you stay organized and productive.',
     type: 'website',
-    locale: 'en_US',
-    url: 'https://swifttask.app',
-    siteName: 'SwiftTask',
-    title: 'SwiftTask — The Smart Productivity App',
-    description:
-      'SwiftTask helps you manage tasks, collaborate with your team, and stay focused. Available on iOS and Android.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'SwiftTask — The Smart Productivity App',
-    description:
-      'SwiftTask helps you manage tasks, collaborate with your team, and stay focused.',
   },
 };
 
@@ -35,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white min-h-screen flex flex-col">
+    <html lang="en">
+      <body className="min-h-screen flex flex-col bg-gray-50">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>
