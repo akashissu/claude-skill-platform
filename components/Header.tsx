@@ -1,161 +1,121 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import type { NavItem } from '@/types';
 
 const navItems: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Features', href: '/features' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'About', href: '/about' },
+  { label: 'Agenda', href: '/#agenda' },
+  { label: 'Speakers', href: '/#speakers' },
+  { label: 'Chat', href: '/#chat' },
+  { label: 'Networking', href: '/#networking' },
+  { label: 'Registration', href: '/#registration' },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setIsScrolled(window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
-    const saved = localStorage.getItem('theme');
+    const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    if (saved === 'dark' || (!saved && prefersDark)) {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-    }
+    const enableDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    document.documentElement.classList.toggle('dark', enableDark);
+    setIsDark(enableDark);
   }, []);
 
-  const toggleDark = () => {
-    if (isDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      setIsDark(false);
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      setIsDark(true);
-    }
+  const toggleDarkMode = () => {
+    const nextDark = !isDark;
+    document.documentElement.classList.toggle('dark', nextDark);
+    localStorage.setItem('theme', nextDark ? 'dark' : 'light');
+    setIsDark(nextDark);
   };
 
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm border-b border-gray-200/50 dark:border-gray-700/50'
+          ? 'border-b border-white/10 bg-slate-950/85 shadow-lg shadow-slate-950/25 backdrop-blur-xl'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center shadow-md group-hover:shadow-primary-500/40 transition-shadow">
-              <span className="text-white font-black text-sm">ST</span>
-            </div>
-            <span className="font-bold text-xl text-gray-900 dark:text-white">
-              Swift<span className="gradient-text">Task</span>
-            </span>
-          </Link>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 via-violet-500 to-accent-500 text-sm font-black text-white shadow-lg shadow-primary-500/30">
+            PS
+          </div>
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary-200">Pulse Summit</p>
+            <p className="text-lg font-bold text-white">Virtual Event Platform</p>
+          </div>
+        </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden items-center gap-2 lg:flex">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-full px-4 py-2 text-sm font-medium text-slate-300 transition hover:bg-white/10 hover:text-white"
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleDarkMode}
+            type="button"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10"
+            aria-label="Toggle dark mode"
+          >
+            {isDark ? '☀️' : '🌙'}
+          </button>
+          <Link href="/#agenda" className="hidden btn-primary md:inline-flex">
+            Join live agenda
+          </Link>
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-200 transition hover:bg-white/10 lg:hidden"
+            aria-label="Toggle navigation menu"
+          >
+            {isMenuOpen ? '✕' : '☰'}
+          </button>
+        </div>
+      </div>
+
+      {isMenuOpen ? (
+        <div className="border-t border-white/10 bg-slate-950/95 px-4 pb-4 pt-2 backdrop-blur lg:hidden">
+          <nav className="mx-auto flex max-w-7xl flex-col gap-2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  pathname === item.href
-                    ? 'bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300'
-                    : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
-                }`}
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-slate-200"
               >
                 {item.label}
               </Link>
             ))}
-          </nav>
-
-          {/* Right Actions */}
-          <div className="flex items-center gap-3">
-            {/* Dark Mode Toggle */}
-            <button
-              onClick={toggleDark}
-              className="p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle dark mode"
-            >
-              {isDark ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
-              )}
-            </button>
-
             <Link
-              href="/pricing"
-              className="hidden md:inline-flex btn-primary text-sm py-2 px-4"
+              href="/#networking"
+              onClick={() => setIsMenuOpen(false)}
+              className="btn-primary mt-2"
             >
-              Get Started
+              Open networking lounge
             </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="Toggle menu"
-            >
-              {isMenuOpen ? (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              ) : (
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-              )}
-            </button>
-          </div>
+          </nav>
         </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700">
-            <nav className="flex flex-col gap-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={`px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    pathname === item.href
-                      ? 'bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
-              <Link
-                href="/pricing"
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-2 btn-primary text-sm justify-center"
-              >
-                Get Started
-              </Link>
-            </nav>
-          </div>
-        )}
-      </div>
+      ) : null}
     </header>
   );
 }

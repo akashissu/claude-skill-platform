@@ -1,45 +1,51 @@
 import type { Metadata } from 'next';
+import type { ReactNode } from 'react';
 import './globals.css';
-import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
 
 export const metadata: Metadata = {
   title: {
-    default: 'SwiftTask — The Smart Productivity App',
-    template: '%s | SwiftTask',
+    default: 'Pulse Summit Live — Virtual Event Platform',
+    template: '%s | Pulse Summit Live',
   },
   description:
-    'SwiftTask helps you manage tasks, collaborate with your team, and stay focused. Available on iOS and Android.',
-  keywords: ['productivity', 'task management', 'team collaboration', 'mobile app', 'iOS', 'Android'],
-  authors: [{ name: 'SwiftTask Team' }],
+    'Pulse Summit Live is a polished virtual event platform for agendas, speakers, live chat, networking, and registration insights.',
+  keywords: [
+    'virtual event platform',
+    'conference agenda',
+    'speaker showcase',
+    'live chat',
+    'networking lounge',
+    'registration dashboard',
+  ],
+  authors: [{ name: 'Pulse Summit Live Team' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://swifttask.app',
-    siteName: 'SwiftTask',
-    title: 'SwiftTask — The Smart Productivity App',
+    url: 'https://pulse-summit.live',
+    siteName: 'Pulse Summit Live',
+    title: 'Pulse Summit Live — Virtual Event Platform',
     description:
-      'SwiftTask helps you manage tasks, collaborate with your team, and stay focused. Available on iOS and Android.',
+      'Join a premium digital event experience with session cards, live chat, speaker profiles, networking, and instant registration context.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SwiftTask — The Smart Productivity App',
+    title: 'Pulse Summit Live — Virtual Event Platform',
     description:
-      'SwiftTask helps you manage tasks, collaborate with your team, and stay focused.',
+      'A responsive React event interface with sessions, speakers, chat, networking, and attendee-ready registration insights.',
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased">
+        <div className="page-shell">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   );
