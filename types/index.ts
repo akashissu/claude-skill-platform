@@ -4,7 +4,75 @@ export interface NavItem {
   href: string;
 }
 
-// Features
+// Event platform types
+export interface EventSession {
+  id: string;
+  title: string;
+  track: string;
+  startTime: string;
+  endTime: string;
+  duration: string;
+  speaker: string;
+  summary: string;
+  room: string;
+  tags: string[];
+  capacity: string;
+  attendees: number;
+  status: 'Live now' | 'Starting soon' | 'On demand';
+  saved?: boolean;
+}
+
+export interface SpeakerProfile {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  bio: string;
+  topic: string;
+  sessionId: string;
+  initials: string;
+  color: string;
+  tags: string[];
+}
+
+export interface ChatMessage {
+  id: string;
+  author: string;
+  role: string;
+  time: string;
+  message: string;
+  highlighted?: boolean;
+}
+
+export interface NetworkingMatch {
+  id: string;
+  name: string;
+  role: string;
+  company: string;
+  location: string;
+  availability: string;
+  matchReason: string;
+  interests: string[];
+}
+
+export interface RegistrationSummary {
+  attendeeName: string;
+  ticketType: string;
+  checkInStatus: string;
+  timezone: string;
+  savedSessions: number;
+  networkingMatches: number;
+  loungeAccess: string;
+  helpDesk: string;
+}
+
+export interface EventStat {
+  id: string;
+  value: string;
+  label: string;
+  description: string;
+}
+
 export interface Feature {
   id: string;
   title: string;
@@ -13,7 +81,6 @@ export interface Feature {
   color: string;
 }
 
-// Testimonials
 export interface Testimonial {
   id: string;
   name: string;
@@ -24,7 +91,6 @@ export interface Testimonial {
   avatarColor: string;
 }
 
-// Stats
 export interface Stat {
   id: string;
   value: string;
@@ -33,7 +99,6 @@ export interface Stat {
   icon: string;
 }
 
-// Pricing
 export interface PricingPlan {
   id: string;
   name: string;
@@ -45,7 +110,6 @@ export interface PricingPlan {
   highlighted: boolean;
 }
 
-// Team
 export interface TeamMember {
   id: string;
   name: string;
@@ -55,13 +119,11 @@ export interface TeamMember {
   color: string;
 }
 
-// Download Button
 export interface DownloadButtonProps {
   platform: 'ios' | 'android';
   href: string;
 }
 
-// App Store Info
 export interface AppStoreInfo {
   platform: 'ios' | 'android';
   rating: number;
@@ -69,11 +131,6 @@ export interface AppStoreInfo {
   url: string;
 }
 
-// Utility types
 export type ClassValue = string | undefined | null | false | ClassValue[];
-
-// Theme
 export type Theme = 'light' | 'dark' | 'system';
-
-// Platform
 export type Platform = 'ios' | 'android' | 'web' | 'desktop';
