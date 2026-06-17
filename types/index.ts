@@ -1,79 +1,43 @@
-// Navigation
-export interface NavItem {
-  label: string;
-  href: string;
-}
+export type Priority = "low" | "medium" | "high";
 
-// Features
-export interface Feature {
+export type FilterOption = "all" | "active" | "completed" | "high" | "medium" | "low";
+
+export interface Todo {
   id: string;
   title: string;
   description: string;
-  icon: string;
-  color: string;
+  completed: boolean;
+  priority: Priority;
+  category: string;
+  createdAt: string;
+  dueDate: string | null;
 }
 
-// Testimonials
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  content: string;
-  rating: number;
-  avatar: string;
-  avatarColor: string;
+export interface AppSettings {
+  defaultPriority: Priority;
+  defaultCategory: string;
+  showCompletedTasks: boolean;
+  enableNotifications: boolean;
+  theme: "light" | "dark";
+  categories: string[];
 }
 
-// Stats
-export interface Stat {
-  id: string;
-  value: string;
-  label: string;
-  description: string;
-  icon: string;
+export interface StatsData {
+  total: number;
+  completed: number;
+  active: number;
+  overdue: number;
+  completionRate: number;
+  byPriority: {
+    high: number;
+    medium: number;
+    low: number;
+  };
+  byCategory: Record<string, number>;
 }
 
-// Pricing
-export interface PricingPlan {
-  id: string;
-  name: string;
-  price: number;
-  period: string;
-  description: string;
-  features: string[];
-  cta: string;
-  highlighted: boolean;
-}
-
-// Team
-export interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
-  avatar: string;
-  color: string;
-}
-
-// Download Button
-export interface DownloadButtonProps {
-  platform: 'ios' | 'android';
+export interface NavLink {
   href: string;
+  label: string;
+  icon?: string;
 }
-
-// App Store Info
-export interface AppStoreInfo {
-  platform: 'ios' | 'android';
-  rating: number;
-  reviews: string;
-  url: string;
-}
-
-// Utility types
-export type ClassValue = string | undefined | null | false | ClassValue[];
-
-// Theme
-export type Theme = 'light' | 'dark' | 'system';
-
-// Platform
-export type Platform = 'ios' | 'android' | 'web' | 'desktop';
