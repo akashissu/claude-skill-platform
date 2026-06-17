@@ -1,143 +1,106 @@
-import type { Metadata } from 'next';
-import { AppDownloadSection } from '@/components/AppDownloadSection';
-import type { TeamMember } from '@/types';
-
-export const metadata: Metadata = {
-  title: 'About Us',
-  description:
-    'Learn about the team behind SwiftTask and our mission to make productivity accessible to everyone.',
-};
-
-const teamMembers: TeamMember[] = [
-  {
-    id: '1',
-    name: 'Sarah Chen',
-    role: 'CEO & Co-Founder',
-    bio: 'Former product lead at Notion. Passionate about building tools that help people do their best work.',
-    avatar: 'SC',
-    color: 'bg-primary-500',
-  },
-  {
-    id: '2',
-    name: 'Marcus Johnson',
-    role: 'CTO & Co-Founder',
-    bio: 'Ex-Google engineer with 12 years of experience building scalable mobile and web applications.',
-    avatar: 'MJ',
-    color: 'bg-accent-500',
-  },
-  {
-    id: '3',
-    name: 'Priya Patel',
-    role: 'Head of Design',
-    bio: 'Award-winning UX designer who believes great design should be invisible and intuitive.',
-    avatar: 'PP',
-    color: 'bg-green-500',
-  },
-  {
-    id: '4',
-    name: 'David Kim',
-    role: 'Head of Growth',
-    bio: 'Growth expert who scaled three startups from 0 to 1M users. Loves data and experiments.',
-    avatar: 'DK',
-    color: 'bg-orange-500',
-  },
-];
+import Link from "next/link";
 
 export default function AboutPage() {
+  const features = [
+    {
+      icon: "✅",
+      title: "Smart Task Management",
+      description:
+        "Create, organize, and track your tasks with ease. Set priorities, categories, and due dates to stay on top of everything.",
+    },
+    {
+      icon: "📊",
+      title: "Productivity Insights",
+      description:
+        "Visualize your progress with detailed statistics. Track completion rates, priority breakdowns, and category distributions.",
+    },
+    {
+      icon: "🔍",
+      title: "Powerful Filtering",
+      description:
+        "Quickly find any task with real-time search and filter by status (active/completed) or priority level.",
+    },
+    {
+      icon: "💾",
+      title: "Local Storage Persistence",
+      description:
+        "Your tasks are automatically saved to your browser's local storage — no account required, no data sent to servers.",
+    },
+    {
+      icon: "⚙️",
+      title: "Customizable Settings",
+      description:
+        "Personalize your experience with custom categories, default priorities, and display preferences.",
+    },
+    {
+      icon: "📱",
+      title: "Responsive Design",
+      description:
+        "TaskFlow works beautifully on all devices — desktop, tablet, and mobile — so you can manage tasks anywhere.",
+    },
+  ];
+
+  const tips = [
+    "Break large tasks into smaller, manageable subtasks.",
+    "Assign priorities to focus on what matters most.",
+    "Use categories to group related tasks together.",
+    "Set due dates to avoid missing important deadlines.",
+    "Review your Stats page regularly to track your progress.",
+    "Clear completed tasks periodically to keep your list clean.",
+  ];
+
   return (
-    <div className="flex flex-col">
-      {/* Mission Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-primary-50 to-accent-50 dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300 text-sm font-semibold rounded-full mb-4">
-            Our Story
-          </span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-            Built by Makers,{' '}
-            <span className="gradient-text">for Makers</span>
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed mb-8">
-            SwiftTask was born out of frustration. We were tired of switching between five different
-            apps just to manage our daily work. In 2022, we set out to build the one app that does
-            it all — beautifully, simply, and powerfully.
-          </p>
-          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-            Today, over 2 million people trust SwiftTask to manage their work, collaborate with
-            their teams, and achieve their goals. We&apos;re just getting started.
-          </p>
-        </div>
-      </section>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">About TaskFlow</h1>
+        <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+          TaskFlow is a modern, lightweight task management application designed to help you stay
+          organized and productive without the complexity of enterprise tools.
+        </p>
+      </div>
 
-      {/* Values */}
-      <section className="py-20 px-4 bg-white dark:bg-gray-950">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-            What We Believe In
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: '💡',
-                title: 'Simplicity First',
-                desc: 'Complexity is the enemy of productivity. We obsess over making every feature feel effortless.',
-              },
-              {
-                icon: '🤝',
-                title: 'People Over Process',
-                desc: 'Tools should adapt to how people work, not the other way around. We build for humans.',
-              },
-              {
-                icon: '🚀',
-                title: 'Continuous Improvement',
-                desc: 'We ship fast, learn from our users, and iterate relentlessly. Good enough is never enough.',
-              },
-            ].map((value, idx) => (
-              <div key={idx} className="card text-center hover:shadow-xl transition-shadow duration-300">
-                <div className="text-5xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">{value.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="card mb-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-3">Our Mission</h2>
+        <p className="text-gray-600 leading-relaxed">
+          We believe that productivity tools should be simple, fast, and respectful of your privacy.
+          TaskFlow was built with a single goal: to give you a clean, distraction-free space to
+          manage your daily tasks. No subscriptions, no data collection, no bloat — just a powerful
+          todo app that works right in your browser.
+        </p>
+      </div>
 
-      {/* Team */}
-      <section className="py-20 px-4 bg-gray-50 dark:bg-gray-900">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-4">
-            Meet the Team
-          </h2>
-          <p className="text-center text-gray-600 dark:text-gray-400 mb-12">
-            A small, passionate team on a big mission.
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {teamMembers.map((member) => (
-              <div
-                key={member.id}
-                className="card text-center hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-              >
-                <div
-                  className={`w-16 h-16 ${member.color} rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4`}
-                >
-                  {member.avatar}
-                </div>
-                <h3 className="font-bold text-gray-900 dark:text-white mb-1">{member.name}</h3>
-                <p className="text-primary-600 dark:text-primary-400 text-sm font-medium mb-3">
-                  {member.role}
-                </p>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed">
-                  {member.bio}
-                </p>
-              </div>
-            ))}
-          </div>
+      <div className="mb-10">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6">Key Features</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {features.map((feature) => (
+            <div key={feature.title} className="card hover:shadow-md transition-shadow duration-200">
+              <div className="text-3xl mb-3">{feature.icon}</div>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">{feature.title}</h3>
+              <p className="text-gray-500 text-sm leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
 
-      <AppDownloadSection />
+      <div className="card mb-10 bg-blue-50 border-blue-100">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">💡 Productivity Tips</h2>
+        <ul className="space-y-2">
+          {tips.map((tip, index) => (
+            <li key={index} className="flex items-start gap-2 text-gray-700">
+              <span className="text-blue-500 font-bold mt-0.5">→</span>
+              <span>{tip}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="text-center">
+        <h2 className="text-2xl font-bold text-gray-800 mb-4">Ready to get started?</h2>
+        <p className="text-gray-500 mb-6">Start managing your tasks today — it only takes a few seconds.</p>
+        <Link href="/" className="btn-primary inline-block text-lg px-8 py-3">
+          Go to My Tasks →
+        </Link>
+      </div>
     </div>
   );
 }

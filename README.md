@@ -1,37 +1,40 @@
-# SwiftTask — The Smart Productivity App
+# TaskFlow - Smart Todo List App
 
-A modern, responsive Next.js 14 web application showcasing SwiftTask, a productivity app with a beautiful app download section, features overview, pricing plans, and more.
+A modern, full-featured todo list application built with **Next.js 14 (App Router)**, **TypeScript**, and **Tailwind CSS**.
 
 ## 🚀 Features
 
-- **Responsive App Download Section** — Beautiful hero section with iOS App Store and Google Play download buttons
-- **Animated Phone Mockup** — CSS-animated phone mockup showing the app UI
-- **Dark Mode Support** — Full dark mode with system preference detection and manual toggle
-- **Multiple Pages** — Home, Features, Pricing, and About pages
-- **Hover Effects** — Smooth transitions and hover animations throughout
-- **TypeScript** — Fully typed with a centralized type system
-- **Tailwind CSS** — Utility-first styling with custom design tokens
+- **Task Management** — Create, edit, delete, and complete tasks
+- **Priorities** — Assign High, Medium, or Low priority to each task
+- **Categories** — Organize tasks by category (Work, Personal, Shopping, etc.)
+- **Due Dates** — Set due dates and get visual overdue indicators
+- **Search & Filter** — Real-time search and filter by status or priority
+- **Statistics** — Visual insights into your productivity and completion rates
+- **Settings** — Customize categories, default priority, and display preferences
+- **Local Storage** — All data persists in your browser — no backend required
+- **Responsive Design** — Works on desktop, tablet, and mobile
 
-## 📦 Tech Stack
+## 🛠️ Tech Stack
 
-- **Next.js 14** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- **React 18**
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **State**: React useState + useEffect
+- **Persistence**: Browser localStorage
 
-## 🛠️ Getting Started
+## 📦 Getting Started
 
 ### Prerequisites
 
-- Node.js 18+
-- npm or yarn
+- Node.js 18.17 or later
+- npm, yarn, or pnpm
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-org/swifttask-web.git
-cd swifttask-web
+git clone https://github.com/your-username/taskflow.git
+cd taskflow
 
 # Install dependencies
 npm install
@@ -52,65 +55,53 @@ npm start
 ## 📁 Project Structure
 
 ```
+taskflow/
 ├── app/
 │   ├── globals.css          # Global styles + Tailwind directives
-│   ├── layout.tsx           # Root layout with Header/Footer
-│   ├── page.tsx             # Homepage
-│   ├── features/
-│   │   └── page.tsx         # Features page
-│   ├── pricing/
-│   │   └── page.tsx         # Pricing page
+│   ├── layout.tsx           # Root layout with Header & Footer
+│   ├── page.tsx             # Homepage — main task board
+│   ├── stats/
+│   │   └── page.tsx         # Statistics & productivity insights
+│   ├── settings/
+│   │   └── page.tsx         # App settings & customization
 │   └── about/
-│       └── page.tsx         # About page
+│       └── page.tsx         # About page & feature overview
 ├── components/
-│   ├── Header.tsx           # Sticky header with dark mode toggle
-│   ├── Footer.tsx           # Footer with download links
-│   ├── AppDownloadSection.tsx  # Main download CTA section
-│   ├── DownloadButton.tsx   # iOS/Android download buttons
-│   ├── PhoneMockup.tsx      # Animated phone mockup
-│   ├── HeroSection.tsx      # Homepage hero
-│   ├── FeaturesSection.tsx  # Features grid
-│   ├── TestimonialsSection.tsx # User testimonials
-│   └── StatsSection.tsx     # Key metrics
+│   ├── Header.tsx           # Navigation header
+│   ├── Footer.tsx           # Site footer
+│   ├── TodoList.tsx         # List of todo items
+│   ├── TodoItem.tsx         # Individual todo item with edit mode
+│   ├── AddTodoForm.tsx      # Form to create new tasks
+│   ├── TodoStats.tsx        # Stats summary cards
+│   ├── FilterBar.tsx        # Search + filter controls
+│   └── StatsChart.tsx       # Priority breakdown chart
 ├── lib/
 │   └── utils.ts             # Utility functions
 ├── types/
-│   └── index.ts             # Centralized TypeScript types
-└── public/                  # Static assets
+│   └── index.ts             # TypeScript type definitions
+└── README.md
 ```
 
-## 🎨 Design System
+## 🎨 Pages
 
-### Colors
-- **Primary**: Blue (`primary-*`) — Main brand color
-- **Accent**: Purple (`accent-*`) — Secondary brand color
-- **Neutral**: Gray scale for text and backgrounds
+| Route | Description |
+|-------|-------------|
+| `/` | Main task board with add form, filters, and task list |
+| `/stats` | Productivity statistics and visual charts |
+| `/settings` | Customize categories, priorities, and preferences |
+| `/about` | App overview, features, and productivity tips |
 
-### Components
-- `.btn-primary` — Primary CTA button with hover effects
-- `.btn-secondary` — Secondary outlined button
-- `.card` — Elevated card component
-- `.gradient-text` — Blue-to-purple gradient text
-- `.gradient-bg` — Blue-to-purple gradient background
-- `.glass` — Glassmorphism effect
+## 💡 Usage Tips
 
-## 📱 App Download Section
-
-The `AppDownloadSection` component features:
-- Gradient background with decorative elements
-- Animated phone mockup showing the app UI
-- iOS App Store and Google Play download buttons
-- Key stats (rating, users, tasks completed)
-- Responsive layout (stacked on mobile, side-by-side on desktop)
-- Dark mode compatible styling
-
-## 🌙 Dark Mode
-
-Dark mode is implemented using Tailwind's `class` strategy:
-- Detects system preference on first load
-- Persists user preference in `localStorage`
-- Toggle button in the header
+1. **Add a task** — Type in the input field and press Enter or click "Add Task"
+2. **Expand form** — Click the input to reveal description, priority, category, and due date fields
+3. **Edit a task** — Click the pencil icon on any task to edit it inline
+4. **Complete a task** — Click the checkbox to mark it as done
+5. **Filter tasks** — Use the filter buttons to view All, Active, Completed, or by priority
+6. **Search** — Type in the search bar to find tasks by title or description
+7. **Clear completed** — Use the "Clear X completed" button to remove finished tasks
+8. **View stats** — Navigate to /stats to see your productivity breakdown
 
 ## 📄 License
 
-MIT License — see [LICENSE](LICENSE) for details.
+MIT License — feel free to use this project for personal or commercial purposes.
