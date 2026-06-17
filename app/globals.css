@@ -2,54 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  color-scheme: dark;
+}
 
 @layer base {
+  * {
+    @apply box-border;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
-    @apply font-sans antialiased;
+    @apply m-0 bg-slate-950 font-sans text-white antialiased;
   }
 
-  * {
-    @apply box-border;
+  button {
+    @apply cursor-pointer;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-primary-500/30 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-semibold rounded-xl border border-gray-200 dark:border-gray-700 transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
-  }
-
-  .card {
-    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-md border border-gray-100 dark:border-gray-700 p-6;
-  }
-
-  .section-heading {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white;
-  }
-
-  .section-subheading {
-    @apply text-lg text-gray-600 dark:text-gray-400 leading-relaxed;
-  }
-}
-
-@layer utilities {
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-accent-500 bg-clip-text text-transparent;
-  }
-
-  .gradient-bg {
-    @apply bg-gradient-to-br from-primary-600 via-primary-700 to-accent-700;
-  }
-
-  .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  .section-card {
+    @apply rounded-[28px] border border-white/10 bg-white/[0.04] p-6 shadow-[0_24px_80px_rgba(2,6,23,0.45)] backdrop-blur;
   }
 }
