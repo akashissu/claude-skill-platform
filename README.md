@@ -1,116 +1,83 @@
-# SwiftTask — The Smart Productivity App
+# Northside Clinic Portal
 
-A modern, responsive Next.js 14 web application showcasing SwiftTask, a productivity app with a beautiful app download section, features overview, pricing plans, and more.
+A modern React and Next.js patient portal experience for PAP-425. The application presents a secure-looking clinic dashboard with key patient workflows gathered into a single polished interface.
 
-## 🚀 Features
+## Feature Overview
 
-- **Responsive App Download Section** — Beautiful hero section with iOS App Store and Google Play download buttons
-- **Animated Phone Mockup** — CSS-animated phone mockup showing the app UI
-- **Dark Mode Support** — Full dark mode with system preference detection and manual toggle
-- **Multiple Pages** — Home, Features, Pricing, and About pages
-- **Hover Effects** — Smooth transitions and hover animations throughout
-- **TypeScript** — Fully typed with a centralized type system
-- **Tailwind CSS** — Utility-first styling with custom design tokens
+This ticket delivers a clinic patient portal with:
 
-## 📦 Tech Stack
+- **Appointment cards** for upcoming and active visits
+- **Medical records summary** for conditions, allergies, vitals, and shared records
+- **Prescription panel** for medication status and refill awareness
+- **Doctor messages** in a secure inbox-style layout
+- **Lab results section** for recent diagnostics and trend visibility
+- **Profile settings** with a security-oriented account summary
+- **Modern healthcare styling** using a dark, high-contrast, professional UI
 
-- **Next.js 14** (App Router)
+## Tech Stack
+
+- **Next.js 14**
+- **React 18**
 - **TypeScript**
 - **Tailwind CSS**
-- **React 18**
 
-## 🛠️ Getting Started
+## Setup
 
 ### Prerequisites
 
 - Node.js 18+
-- npm or yarn
+- npm
 
-### Installation
+### Install dependencies
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/swifttask-web.git
-cd swifttask-web
-
-# Install dependencies
 npm install
+```
 
-# Start the development server
+## Run Locally
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Then open:
 
-### Build for Production
+- <http://localhost:3000>
+
+## Production Build
+
+Build and run the production app:
 
 ```bash
 npm run build
 npm start
 ```
 
-## 📁 Project Structure
+## What Was Built for PAP-425
 
+The home page was repurposed into a patient portal dashboard and organized into dedicated portal sections:
+
+- **Portal header** with healthcare-focused branding and context
+- **Appointments** area showing visit status, provider, location, date, and actions
+- **Medical summary** blocks that surface chart highlights and recent patient information
+- **Prescriptions** area for medication tracking and refill-related states
+- **Doctor messages** panel for secure communication previews
+- **Lab results** cards for latest measurements, references, and status trends
+- **Profile settings** panel with account details and a security center callout
+
+## Project Notes
+
+- The app is structured as a Next.js App Router project.
+- Styling emphasizes a trustworthy, secure-looking clinic experience.
+- Content is currently represented through UI-focused sample portal data for the implemented experience.
+
+## Scripts
+
+```bash
+npm run dev
+npm run build
+npm start
+npm run lint
 ```
-├── app/
-│   ├── globals.css          # Global styles + Tailwind directives
-│   ├── layout.tsx           # Root layout with Header/Footer
-│   ├── page.tsx             # Homepage
-│   ├── features/
-│   │   └── page.tsx         # Features page
-│   ├── pricing/
-│   │   └── page.tsx         # Pricing page
-│   └── about/
-│       └── page.tsx         # About page
-├── components/
-│   ├── Header.tsx           # Sticky header with dark mode toggle
-│   ├── Footer.tsx           # Footer with download links
-│   ├── AppDownloadSection.tsx  # Main download CTA section
-│   ├── DownloadButton.tsx   # iOS/Android download buttons
-│   ├── PhoneMockup.tsx      # Animated phone mockup
-│   ├── HeroSection.tsx      # Homepage hero
-│   ├── FeaturesSection.tsx  # Features grid
-│   ├── TestimonialsSection.tsx # User testimonials
-│   └── StatsSection.tsx     # Key metrics
-├── lib/
-│   └── utils.ts             # Utility functions
-├── types/
-│   └── index.ts             # Centralized TypeScript types
-└── public/                  # Static assets
-```
-
-## 🎨 Design System
-
-### Colors
-- **Primary**: Blue (`primary-*`) — Main brand color
-- **Accent**: Purple (`accent-*`) — Secondary brand color
-- **Neutral**: Gray scale for text and backgrounds
-
-### Components
-- `.btn-primary` — Primary CTA button with hover effects
-- `.btn-secondary` — Secondary outlined button
-- `.card` — Elevated card component
-- `.gradient-text` — Blue-to-purple gradient text
-- `.gradient-bg` — Blue-to-purple gradient background
-- `.glass` — Glassmorphism effect
-
-## 📱 App Download Section
-
-The `AppDownloadSection` component features:
-- Gradient background with decorative elements
-- Animated phone mockup showing the app UI
-- iOS App Store and Google Play download buttons
-- Key stats (rating, users, tasks completed)
-- Responsive layout (stacked on mobile, side-by-side on desktop)
-- Dark mode compatible styling
-
-## 🌙 Dark Mode
-
-Dark mode is implemented using Tailwind's `class` strategy:
-- Detects system preference on first load
-- Persists user preference in `localStorage`
-- Toggle button in the header
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
