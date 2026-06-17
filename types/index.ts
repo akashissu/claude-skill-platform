@@ -1,79 +1,100 @@
-// Navigation
-export interface NavItem {
-  label: string;
-  href: string;
+export type SessionTrack = 'All' | 'AI & ML' | 'Web Dev' | 'Cloud' | 'Security' | 'DevOps' | 'Product' | 'Leadership';
+
+export type SessionLevel = 'Beginner' | 'Intermediate' | 'Advanced';
+
+export type AgendaItemType = 'keynote' | 'session' | 'break' | 'workshop' | 'panel';
+
+export interface SpeakerSummary {
+  id: string;
+  name: string;
+  title: string;
+  avatar: string;
 }
 
-// Features
-export interface Feature {
+export interface Speaker {
+  id: string;
+  name: string;
+  title: string;
+  company: string;
+  avatar: string;
+  bio: string;
+  topics: string[];
+  sessionCount: number;
+  twitter?: string;
+  linkedin?: string;
+}
+
+export interface Session {
   id: string;
   title: string;
   description: string;
-  icon: string;
-  color: string;
-}
-
-// Testimonials
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  content: string;
+  speaker: SpeakerSummary;
+  track: SessionTrack;
+  level?: SessionLevel;
+  duration: number;
+  time: string;
+  attendeeCount: number;
   rating: number;
-  avatar: string;
-  avatarColor: string;
+  isLive: boolean;
+  tags: string[];
 }
 
-// Stats
-export interface Stat {
+export interface AgendaItem {
   id: string;
-  value: string;
+  time: string;
+  title: string;
+  speaker?: string;
+  type: AgendaItemType;
+  description?: string;
+  duration?: number;
+  room?: string;
+  attendeeCount?: number;
+  isLive?: boolean;
+}
+
+export interface AgendaDay {
   label: string;
-  description: string;
-  icon: string;
+  date: string;
+  items: AgendaItem[];
 }
 
-// Pricing
-export interface PricingPlan {
-  id: string;
+export interface ChatUser {
   name: string;
-  price: number;
-  period: string;
-  description: string;
-  features: string[];
-  cta: string;
-  highlighted: boolean;
-}
-
-// Team
-export interface TeamMember {
-  id: string;
-  name: string;
-  role: string;
-  bio: string;
   avatar: string;
-  color: string;
+  isHost: boolean;
 }
 
-// Download Button
-export interface DownloadButtonProps {
-  platform: 'ios' | 'android';
-  href: string;
+export interface ChatMessage {
+  id: string;
+  user: ChatUser;
+  content: string;
+  timestamp: string;
+  reactions: string[];
+  isReaction?: boolean;
 }
 
-// App Store Info
-export interface AppStoreInfo {
-  platform: 'ios' | 'android';
-  rating: number;
-  reviews: string;
-  url: string;
+export interface Attendee {
+  id: string;
+  name: string;
+  title: string;
+  company: string;
+  avatar: string;
+  location?: string;
+  interests: string[];
+  isOnline: boolean;
 }
 
-// Utility types
-export type ClassValue = string | undefined | null | false | ClassValue[];
+export interface RegistrationFormData {
+  name: string;
+  email: string;
+  company: string;
+  role: string;
+}
 
-// Theme
-export type Theme = 'light' | 'dark' | 'system';
-
-// Platform
-export type Platform = 'ios' | 'android' | 'web' | 'desktop';
+export interface EventStats {
+  totalAttendees: number;
+  countries: number;
+  sessions: number;
+  speakers: number;
+  days: number;
+}
