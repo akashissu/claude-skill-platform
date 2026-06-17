@@ -9,6 +9,8 @@ export type Todo = {
   id: string;
   text: string;
   completed: boolean;
+  priority: string;
+  category: string;
 };
 
 const createTodoId = () => {

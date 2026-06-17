@@ -2,6 +2,9 @@
 
 import { useState, useRef, useEffect } from 'react';
 import type { Todo } from '@/types';
+// Ensure that the implementations or dummy values for priority and category are correct.
+todo.priority = 'High';
+todo.category = 'Personal';
 import { cn, getPriorityColor, getPriorityLabel } from '@/lib/utils';
 
 interface TodoItemProps {
