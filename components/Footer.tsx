@@ -1,38 +1,35 @@
 import Link from 'next/link';
+import { Zap, Twitter, Linkedin, Youtube, Github } from 'lucide-react';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
-
   return (
-    <footer className="bg-gray-900 dark:bg-gray-950 text-gray-400 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    <footer className="bg-gray-950 border-t border-white/10 pt-16 pb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-                <span className="text-white font-black text-sm">ST</span>
+          <div className="md:col-span-1">
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 bg-brand-600 rounded-lg flex items-center justify-center">
+                <Zap className="w-5 h-5 text-white" />
               </div>
-              <span className="font-bold text-xl text-white">
-                Swift<span className="gradient-text">Task</span>
+              <span className="font-bold text-white text-lg">
+                Tech<span className="text-brand-400">Summit</span> 2024
               </span>
-            </Link>
-            <p className="text-sm leading-relaxed mb-6">
-              The smart productivity app that helps you manage tasks, collaborate with your team,
-              and stay focused on what matters most.
+            </div>
+            <p className="text-gray-400 text-sm leading-relaxed mb-4">
+              The premier virtual technology conference connecting developers, designers, and tech leaders worldwide.
             </p>
             <div className="flex gap-3">
-              {/* Social Links */}
               {[
-                { label: 'Twitter', icon: 'T', href: '#' },
-                { label: 'LinkedIn', icon: 'in', href: '#' },
-                { label: 'GitHub', icon: 'GH', href: '#' },
-              ].map((social) => (
+                { icon: <Twitter className="w-4 h-4" />, href: '#' },
+                { icon: <Linkedin className="w-4 h-4" />, href: '#' },
+                { icon: <Youtube className="w-4 h-4" />, href: '#' },
+                { icon: <Github className="w-4 h-4" />, href: '#' },
+              ].map((social, i) => (
                 <a
-                  key={social.label}
+                  key={i}
                   href={social.href}
-                  aria-label={social.label}
-                  className="w-9 h-9 bg-gray-800 hover:bg-primary-600 rounded-lg flex items-center justify-center text-xs font-bold text-gray-400 hover:text-white transition-all duration-200"
+                  className="w-8 h-8 bg-white/10 hover:bg-brand-600 rounded-lg flex items-center justify-center text-gray-400 hover:text-white transition-all duration-200"
                 >
                   {social.icon}
                 </a>
@@ -40,95 +37,60 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Product */}
+          {/* Event */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Product</h4>
-            <ul className="space-y-3">
-              {[
-                { label: 'Features', href: '/features' },
-                { label: 'Pricing', href: '/pricing' },
-                { label: 'Changelog', href: '#' },
-                { label: 'Roadmap', href: '#' },
-                { label: 'Status', href: '#' },
-              ].map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
+            <h3 className="text-white font-semibold mb-4">Event</h3>
+            <ul className="space-y-2">
+              {['Sessions', 'Speakers', 'Schedule', 'Workshops', 'Sponsors'].map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-gray-400 hover:text-brand-400 text-sm transition-colors">
+                    {item}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Company */}
+          {/* Resources */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <ul className="space-y-3">
-              {[
-                { label: 'About Us', href: '/about' },
-                { label: 'Blog', href: '#' },
-                { label: 'Careers', href: '#' },
-                { label: 'Press Kit', href: '#' },
-                { label: 'Contact', href: '#' },
-              ].map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-sm hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
+            <h3 className="text-white font-semibold mb-4">Resources</h3>
+            <ul className="space-y-2">
+              {['FAQ', 'Code of Conduct', 'Accessibility', 'Press Kit', 'Contact Us'].map((item) => (
+                <li key={item}>
+                  <Link href="#" className="text-gray-400 hover:text-brand-400 text-sm transition-colors">
+                    {item}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Download */}
+          {/* Newsletter */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Download</h4>
-            <p className="text-sm mb-4">Get SwiftTask on your favorite platform.</p>
-            <div className="flex flex-col gap-3">
-              <a
-                href="#"
-                className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 rounded-xl px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 group"
-              >
-                <span className="text-2xl">🍎</span>
-                <div>
-                  <p className="text-xs text-gray-500">Download on the</p>
-                  <p className="text-sm font-semibold text-white">App Store</p>
-                </div>
-              </a>
-              <a
-                href="#"
-                className="flex items-center gap-3 bg-gray-800 hover:bg-gray-700 rounded-xl px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 group"
-              >
-                <span className="text-2xl">▶️</span>
-                <div>
-                  <p className="text-xs text-gray-500">Get it on</p>
-                  <p className="text-sm font-semibold text-white">Google Play</p>
-                </div>
-              </a>
+            <h3 className="text-white font-semibold mb-4">Stay Updated</h3>
+            <p className="text-gray-400 text-sm mb-4">Get notified about upcoming events and session recordings.</p>
+            <div className="flex gap-2">
+              <input
+                type="email"
+                placeholder="your@email.com"
+                className="flex-1 bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-500 transition-colors"
+              />
+              <button className="bg-brand-600 hover:bg-brand-500 text-white px-3 py-2 rounded-lg text-sm font-medium transition-colors">
+                Subscribe
+              </button>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm">
-            © {currentYear} SwiftTask, Inc. All rights reserved.
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-gray-500 text-sm">
+            © 2024 TechSummit. All rights reserved.
           </p>
           <div className="flex gap-6">
             {['Privacy Policy', 'Terms of Service', 'Cookie Policy'].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-sm hover:text-white transition-colors duration-200"
-              >
+              <Link key={item} href="#" className="text-gray-500 hover:text-gray-300 text-sm transition-colors">
                 {item}
-              </a>
+              </Link>
             ))}
           </div>
         </div>
