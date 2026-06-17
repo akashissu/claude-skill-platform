@@ -1,79 +1,45 @@
-// Navigation
-export interface NavItem {
-  label: string;
-  href: string;
+export type Priority = 'high' | 'medium' | 'low';
+
+export type FilterType = 'all' | 'active' | 'completed';
+
+export interface Todo {
+  id: string;
+  text: string;
+  completed: boolean;
+  priority: Priority;
+  category: string;
+  createdAt: string;
 }
 
-// Features
-export interface Feature {
-  id: string;
+export interface TodoStats {
+  total: number;
+  completed: number;
+  active: number;
+  highPriority: number;
+  completionRate: number;
+}
+
+export interface NavLink {
+  href: string;
+  label: string;
+}
+
+export interface TipItem {
+  number: string;
   title: string;
   description: string;
-  icon: string;
+  category: string;
   color: string;
+  textColor: string;
 }
 
-// Testimonials
-export interface Testimonial {
-  id: string;
-  name: string;
-  role: string;
-  content: string;
-  rating: number;
-  avatar: string;
-  avatarColor: string;
-}
-
-// Stats
-export interface Stat {
-  id: string;
-  value: string;
-  label: string;
-  description: string;
+export interface FeatureItem {
   icon: string;
-}
-
-// Pricing
-export interface PricingPlan {
-  id: string;
-  name: string;
-  price: number;
-  period: string;
+  title: string;
   description: string;
-  features: string[];
-  cta: string;
-  highlighted: boolean;
 }
 
-// Team
-export interface TeamMember {
-  id: string;
+export interface TechStackItem {
   name: string;
-  role: string;
-  bio: string;
-  avatar: string;
-  color: string;
+  description: string;
 }
-
-// Download Button
-export interface DownloadButtonProps {
-  platform: 'ios' | 'android';
-  href: string;
-}
-
-// App Store Info
-export interface AppStoreInfo {
-  platform: 'ios' | 'android';
-  rating: number;
-  reviews: string;
-  url: string;
-}
-
-// Utility types
-export type ClassValue = string | undefined | null | false | ClassValue[];
-
-// Theme
-export type Theme = 'light' | 'dark' | 'system';
-
-// Platform
-export type Platform = 'ios' | 'android' | 'web' | 'desktop';

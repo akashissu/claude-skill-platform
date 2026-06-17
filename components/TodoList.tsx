@@ -1,27 +1,31 @@
-import type { Todo } from '@/components/TodoApp';
+'use client';
+
+import type { Todo } from '@/types';
 import { TodoItem } from '@/components/TodoItem';
 
-type TodoListProps = {
+interface TodoListProps {
   todos: Todo[];
-  onToggleTodo: (id: string) => void;
-  onDeleteTodo: (id: string) => void;
-};
+  onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
+  onEdit: (id: string, newText: string) => void;
+}
 
-export function TodoList({ todos, onToggleTodo, onDeleteTodo }: TodoListProps) {
+export function TodoList({ todos, onToggle, onDelete, onEdit }: TodoListProps) {
   if (todos.length === 0) {
-    return <p className="todo-empty-state">No todos yet. Add one above to get started.</p>;
+    return null;
   }
 
   return (
-    <ul className="todo-list">
-      {todos.map((todo) => (
+    <div className="space-y-2">
+      {todos.map(todo => (
         <TodoItem
           key={todo.id}
           todo={todo}
-          onToggleTodo={onToggleTodo}
-          onDeleteTodo={onDeleteTodo}
+          onToggle={onToggle}
+          onDelete={onDelete}
+          onEdit={onEdit}
         />
       ))}
-    </ul>
+    </div>
   );
 }
