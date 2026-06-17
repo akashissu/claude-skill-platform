@@ -1,116 +1,60 @@
-# SwiftTask — The Smart Productivity App
+# TodoMaster - Next.js 14 Todo Application
 
-A modern, responsive Next.js 14 web application showcasing SwiftTask, a productivity app with a beautiful app download section, features overview, pricing plans, and more.
+A complete, production-ready todo list application built with Next.js 14 (App Router), TypeScript, and Tailwind CSS.
 
-## 🚀 Features
+## Features
 
-- **Responsive App Download Section** — Beautiful hero section with iOS App Store and Google Play download buttons
-- **Animated Phone Mockup** — CSS-animated phone mockup showing the app UI
-- **Dark Mode Support** — Full dark mode with system preference detection and manual toggle
-- **Multiple Pages** — Home, Features, Pricing, and About pages
-- **Hover Effects** — Smooth transitions and hover animations throughout
-- **TypeScript** — Fully typed with a centralized type system
-- **Tailwind CSS** — Utility-first styling with custom design tokens
+- ✅ **Add Tasks** — Create new tasks with a title, priority level, and category
+- ✔️ **Complete Tasks** — Toggle tasks between active and completed states
+- ✏️ **Edit Tasks** — Inline editing by clicking the edit icon on any active task
+- 🗑️ **Delete Tasks** — Remove individual tasks or clear all completed tasks at once
+- 🏷️ **Priority Levels** — Assign High, Medium, or Low priority to each task
+- 📂 **Categories** — Organize tasks into categories (Work, Personal, Shopping, Health, etc.)
+- 🔍 **Filter Tasks** — View All, Active, or Completed tasks
+- 📊 **Statistics** — Detailed stats page with progress bars and category breakdown
+- 💾 **Persistent Storage** — Tasks are automatically saved to localStorage
+- 📱 **Responsive Design** — Works on mobile, tablet, and desktop
 
-## 📦 Tech Stack
+## Pages
 
-- **Next.js 14** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- **React 18**
+| Route | Description |
+|-------|-------------|
+| `/` | Main todo list with add form, filters, and stats |
+| `/stats` | Detailed statistics and progress tracking |
+| `/tips` | Productivity tips and strategies |
+| `/about` | About the app and tech stack |
 
-## 🛠️ Getting Started
+## Tech Stack
 
-### Prerequisites
+- **Next.js 14** — React framework with App Router
+- **TypeScript** — Full type safety throughout
+- **Tailwind CSS** — Utility-first styling
+- **React Hooks** — useState, useEffect, useRef, useCallback
+- **localStorage** — Browser-based data persistence
+- **UUID** — Unique ID generation for tasks
+- **clsx + tailwind-merge** — Conditional class merging
 
-- Node.js 18+
-- npm or yarn
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/your-org/swifttask-web.git
-cd swifttask-web
-
-# Install dependencies
-npm install
-
-# Start the development server
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
-
-## 📁 Project Structure
+## Project Structure
 
 ```
 ├── app/
-│   ├── globals.css          # Global styles + Tailwind directives
-│   ├── layout.tsx           # Root layout with Header/Footer
-│   ├── page.tsx             # Homepage
-│   ├── features/
-│   │   └── page.tsx         # Features page
-│   ├── pricing/
-│   │   └── page.tsx         # Pricing page
-│   └── about/
-│       └── page.tsx         # About page
+│   ├── globals.css          # Global styles with Tailwind directives
+│   ├── layout.tsx           # Root layout with Header and Footer
+│   ├── page.tsx             # Homepage — main todo list
+│   ├── about/page.tsx       # About page
+│   ├── tips/page.tsx        # Productivity tips page
+│   └── stats/page.tsx       # Statistics page
 ├── components/
-│   ├── Header.tsx           # Sticky header with dark mode toggle
-│   ├── Footer.tsx           # Footer with download links
-│   ├── AppDownloadSection.tsx  # Main download CTA section
-│   ├── DownloadButton.tsx   # iOS/Android download buttons
-│   ├── PhoneMockup.tsx      # Animated phone mockup
-│   ├── HeroSection.tsx      # Homepage hero
-│   ├── FeaturesSection.tsx  # Features grid
-│   ├── TestimonialsSection.tsx # User testimonials
-│   └── StatsSection.tsx     # Key metrics
+│   ├── Header.tsx           # Navigation header
+│   ├── Footer.tsx           # Site footer
+│   ├── TodoItem.tsx         # Individual todo item with edit/delete
+│   ├── TodoList.tsx         # List of todo items
+│   ├── AddTodoForm.tsx      # Form to add new tasks
+│   ├── TodoStats.tsx        # Stats summary widget
+│   └── FilterBar.tsx        # Filter and clear controls
 ├── lib/
 │   └── utils.ts             # Utility functions
 ├── types/
-│   └── index.ts             # Centralized TypeScript types
-└── public/                  # Static assets
+│   └── index.ts             # TypeScript type definitions
+└── README.md
 ```
-
-## 🎨 Design System
-
-### Colors
-- **Primary**: Blue (`primary-*`) — Main brand color
-- **Accent**: Purple (`accent-*`) — Secondary brand color
-- **Neutral**: Gray scale for text and backgrounds
-
-### Components
-- `.btn-primary` — Primary CTA button with hover effects
-- `.btn-secondary` — Secondary outlined button
-- `.card` — Elevated card component
-- `.gradient-text` — Blue-to-purple gradient text
-- `.gradient-bg` — Blue-to-purple gradient background
-- `.glass` — Glassmorphism effect
-
-## 📱 App Download Section
-
-The `AppDownloadSection` component features:
-- Gradient background with decorative elements
-- Animated phone mockup showing the app UI
-- iOS App Store and Google Play download buttons
-- Key stats (rating, users, tasks completed)
-- Responsive layout (stacked on mobile, side-by-side on desktop)
-- Dark mode compatible styling
-
-## 🌙 Dark Mode
-
-Dark mode is implemented using Tailwind's `class` strategy:
-- Detects system preference on first load
-- Persists user preference in `localStorage`
-- Toggle button in the header
-
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
