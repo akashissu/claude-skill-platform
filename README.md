@@ -1,116 +1,93 @@
-# SwiftTask — The Smart Productivity App
+# TechSummit 2024 — Virtual Event Platform
 
-A modern, responsive Next.js 14 web application showcasing SwiftTask, a productivity app with a beautiful app download section, features overview, pricing plans, and more.
+A production-ready virtual event platform built with Next.js 14 (App Router), TypeScript, and Tailwind CSS.
 
-## 🚀 Features
+## Features
 
-- **Responsive App Download Section** — Beautiful hero section with iOS App Store and Google Play download buttons
-- **Animated Phone Mockup** — CSS-animated phone mockup showing the app UI
-- **Dark Mode Support** — Full dark mode with system preference detection and manual toggle
-- **Multiple Pages** — Home, Features, Pricing, and About pages
-- **Hover Effects** — Smooth transitions and hover animations throughout
-- **TypeScript** — Fully typed with a centralized type system
-- **Tailwind CSS** — Utility-first styling with custom design tokens
+- **Session Cards** — Browse 50+ sessions with filtering by track, search, and grid/list view toggle
+- **Speaker Profiles** — Detailed speaker cards with bios, topics, and social links
+- **Event Agenda** — Multi-day agenda with expandable session details and live indicators
+- **Live Chat Panel** — Real-time chat with reactions, Q&A tab, and message history
+- **Networking Area** — Connect with attendees, view online status, and join video rooms
+- **Registration Summary** — Multi-step registration form with success state
+- **Responsive Design** — Fully responsive across mobile, tablet, and desktop
+- **Dark Theme** — Polished dark UI with brand colors and smooth animations
 
-## 📦 Tech Stack
+## Tech Stack
 
-- **Next.js 14** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- **React 18**
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Utilities**: clsx, tailwind-merge
 
-## 🛠️ Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
+## Getting Started
 
 ```bash
-# Clone the repository
-git clone https://github.com/your-org/swifttask-web.git
-cd swifttask-web
-
 # Install dependencies
 npm install
 
-# Start the development server
+# Run development server
 npm run dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Build for Production
-
-```bash
+# Build for production
 npm run build
+
+# Start production server
 npm start
 ```
 
-## 📁 Project Structure
+Open [http://localhost:3000](http://localhost:3000) to view the app.
+
+## Project Structure
 
 ```
 ├── app/
-│   ├── globals.css          # Global styles + Tailwind directives
-│   ├── layout.tsx           # Root layout with Header/Footer
-│   ├── page.tsx             # Homepage
-│   ├── features/
-│   │   └── page.tsx         # Features page
-│   ├── pricing/
-│   │   └── page.tsx         # Pricing page
-│   └── about/
-│       └── page.tsx         # About page
+│   ├── globals.css          # Global styles with Tailwind directives
+│   ├── layout.tsx           # Root layout with Header and Footer
+│   ├── page.tsx             # Homepage with all sections
+│   ├── sessions/
+│   │   └── page.tsx         # Sessions listing with filters
+│   ├── speakers/
+│   │   └── page.tsx         # Speakers grid with modal
+│   └── networking/
+│       └── page.tsx         # Networking lounge with video rooms
 ├── components/
-│   ├── Header.tsx           # Sticky header with dark mode toggle
-│   ├── Footer.tsx           # Footer with download links
-│   ├── AppDownloadSection.tsx  # Main download CTA section
-│   ├── DownloadButton.tsx   # iOS/Android download buttons
-│   ├── PhoneMockup.tsx      # Animated phone mockup
-│   ├── HeroSection.tsx      # Homepage hero
-│   ├── FeaturesSection.tsx  # Features grid
-│   ├── TestimonialsSection.tsx # User testimonials
-│   └── StatsSection.tsx     # Key metrics
+│   ├── Header.tsx           # Sticky navigation header
+│   ├── Footer.tsx           # Site footer
+│   ├── SessionCard.tsx      # Session card (grid + list modes)
+│   ├── SpeakerCard.tsx      # Speaker profile card
+│   ├── AgendaSection.tsx    # Multi-day agenda with timeline
+│   ├── LiveChatPanel.tsx    # Floating live chat panel
+│   ├── NetworkingArea.tsx   # Attendee networking grid
+│   └── RegistrationSummary.tsx  # Registration form
 ├── lib/
-│   └── utils.ts             # Utility functions
-├── types/
-│   └── index.ts             # Centralized TypeScript types
-└── public/                  # Static assets
+│   ├── utils.ts             # Utility functions
+│   └── data.ts              # Mock data
+└── types/
+    └── index.ts             # TypeScript type definitions
 ```
 
-## 🎨 Design System
+## Pages
 
-### Colors
-- **Primary**: Blue (`primary-*`) — Main brand color
-- **Accent**: Purple (`accent-*`) — Secondary brand color
-- **Neutral**: Gray scale for text and backgrounds
+- `/` — Homepage with hero, featured sessions, speakers, agenda, and networking
+- `/sessions` — Full sessions listing with search and track filters
+- `/speakers` — Speaker directory with detail modal
+- `/networking` — Networking lounge with video rooms and attendee list
 
-### Components
-- `.btn-primary` — Primary CTA button with hover effects
-- `.btn-secondary` — Secondary outlined button
-- `.card` — Elevated card component
-- `.gradient-text` — Blue-to-purple gradient text
-- `.gradient-bg` — Blue-to-purple gradient background
-- `.glass` — Glassmorphism effect
+## Key Components
 
-## 📱 App Download Section
+### SessionCard
+Displays session information in grid or list mode. Features bookmark toggle, live indicator, speaker info, and metadata.
 
-The `AppDownloadSection` component features:
-- Gradient background with decorative elements
-- Animated phone mockup showing the app UI
-- iOS App Store and Google Play download buttons
-- Key stats (rating, users, tasks completed)
-- Responsive layout (stacked on mobile, side-by-side on desktop)
-- Dark mode compatible styling
+### AgendaSection
+Tabbed multi-day agenda with timeline layout. Items expand to show full details including room, duration, and attendee count.
 
-## 🌙 Dark Mode
+### LiveChatPanel
+Floating chat panel with message history, emoji reactions, and Q&A tab. Supports sending new messages.
 
-Dark mode is implemented using Tailwind's `class` strategy:
-- Detects system preference on first load
-- Persists user preference in `localStorage`
-- Toggle button in the header
+### NetworkingArea
+Searchable attendee grid with online status indicators, interest tags, and connect/message actions.
 
-## 📄 License
-
-MIT License — see [LICENSE](LICENSE) for details.
+### RegistrationSummary
+Two-step registration form with loading state and success confirmation.
