@@ -1,56 +1,44 @@
-import type { ClassValue } from '@/types';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-/**
- * Merges class names, filtering out falsy values.
- */
-export function cn(...classes: ClassValue[]): string {
-  return classes
-    .flat()
-    .filter((cls): cls is string => typeof cls === 'string' && cls.length > 0)
-    .join(' ');
+export function cn(...inputs: ClassValue[]): string {
+  return twMerge(clsx(inputs));
 }
 
-/**
- * Formats a number with K/M suffixes.
- */
-export function formatNumber(num: number): string {
-  if (num >= 1_000_000) {
-    return `${(num / 1_000_000).toFixed(1)}M`;
-  }
-  if (num >= 1_000) {
-    return `${(num / 1_000).toFixed(1)}K`;
-  }
-  return num.toString();
+export function formatDate(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(date);
 }
 
-/**
- * Truncates a string to a given length.
- */
+export function formatTime(date: Date): string {
+  return new Intl.DateTimeFormat('en-US', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  }).format(date);
+}
+
 export function truncate(str: string, length: number): string {
   if (str.length <= length) return str;
-  return `${str.slice(0, length)}...`;
+  return str.slice(0, length) + '...';
 }
 
-/**
- * Returns a greeting based on the current hour.
- */
-export function getGreeting(): string {
-  const hour = new Date().getHours();
-  if (hour < 12) return 'Good morning';
-  if (hour < 17) return 'Good afternoon';
-  return 'Good evening';
+export function slugify(str: string): string {
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
 }
 
-/**
- * Delays execution for a given number of milliseconds.
- */
-export function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-/**
- * Checks if a string is a valid email address.
- */
-export function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+export function getInitials(name: string): string {
+  return name
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .toUpperCase()
+    .slice(0, 2);
 }
