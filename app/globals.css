@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
+    color-scheme: light;
+    --app-background: #f8fafc;
+    --app-foreground: #0f172a;
+  }
+
+  .dark {
     color-scheme: dark;
+    --app-background: #020617;
+    --app-foreground: #e2e8f0;
   }
 
   * {
@@ -14,36 +22,27 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    @apply scroll-smooth;
   }
 
   body {
-    @apply m-0 font-sans;
+    @apply m-0 min-h-screen bg-[var(--app-background)] font-sans text-[var(--app-foreground)] antialiased transition-colors;
   }
 
   a {
-    @apply transition-colors;
+    @apply no-underline;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
   }
 }
 
-@layer components {
-  .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-primary-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-black/40 transition hover:bg-primary-500;
-  }
-
-  .btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900 px-5 py-3 text-sm font-semibold text-slate-100 transition hover:border-slate-600 hover:bg-slate-800;
-  }
-
-  .card {
-    @apply rounded-3xl border bg-slate-900/60 p-6 shadow-xl shadow-slate-950/35;
-  }
-
-  .section-heading {
-    @apply text-3xl font-black tracking-tight text-white md:text-4xl;
-  }
-
-  .section-subheading {
-    @apply text-base leading-8 text-slate-300;
+@layer utilities {
+  .surface-ring {
+    @apply ring-1 ring-slate-200 dark:ring-slate-800;
   }
 }

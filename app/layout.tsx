@@ -1,25 +1,23 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { AppShell } from '@/components/AppShell';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Cloude Skill Platform',
-    template: '%s | Cloude Skill Platform',
+    default: 'Northstar SaaS Admin Dashboard',
+    template: '%s | Northstar SaaS Admin Dashboard',
   },
-  description:
-    'Enterprise catalog for department suites, industry overlays, pricing, activation rules, and source-backed Claude Skill packaging.',
-  keywords: ['Claude Skills', 'enterprise catalog', 'department suite', 'industry overlay', 'pricing', 'governance'],
+  description: 'Client-side SaaS admin dashboard with KPI cards, charts, user management, settings, and persistent theming.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning>
+      <body>
+        <ThemeProvider>
+          <AppShell>{children}</AppShell>
+        </ThemeProvider>
       </body>
     </html>
   );
