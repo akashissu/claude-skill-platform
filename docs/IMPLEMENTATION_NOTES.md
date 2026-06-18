@@ -1,54 +1,61 @@
-# PAP-440 Implementation Notes
+# PAP-441 Implementation Notes
 
 ## Summary
 
-PAP-440 ships a SaaS Admin Dashboard with a persistent admin shell, KPI overview visualizations, user management workflows, and browser-persisted settings. This document is the Scribe-phase deployment handoff and summarizes what reviewers and release automation should validate.
+PAP-441 is a deployment-fix ticket for the SaaS Admin Dashboard. The failing Vercel build completed compilation, linting, type-checking, and static generation successfully, but packaging failed because Vercel could not find `.next/routes-manifest.json`.
 
-## Delivered experience
+The Grunt implementation restored the default Next.js build output behavior so Vercel can consume the expected `.next/` artifacts during deployment.
 
-### Dashboard
+## Failure symptom captured from deployment logs
 
-- 4 KPI stat cards surface key admin metrics
-- a line chart visualizes monthly trend data
-- a bar chart compares monthly performance data
-- chart data is sourced from static mock datasets
+- `next build` completed successfully
+- static pages were generated successfully
+- Vercel packaging failed afterward with:
+  - `Error: The file "/vercel/path1/.next/routes-manifest.json" couldn't be found.`
 
-### Users
+This indicates the application code was broadly healthy, but the deployment artifact layout was incompatible with Vercel's expected Next.js output contract.
 
-- searchable user management table
-- sortable columns for Name, Email, Role, Status, and Join Date
-- static mock user records support local/demo validation without backend dependencies
+## Architecture / configuration handoff
 
-### Settings
+- framework: Next.js 14 app-router application
+- build expectation: default Next.js output in `.next/`
+- deployment target: Vercel
+- release-critical artifact: `.next/routes-manifest.json`
 
-- profile editing fields for name, email, and avatar URL
-- notification toggles for email notifications, product updates, and security alerts
-- form values and preferences persist via `localStorage`
+For this ticket, the important architectural point is not new UI behavior but restoration of standard framework output semantics so the hosting platform can package the build correctly.
 
-## Architecture snapshot
+## Scope of the Scribe phase
 
-- route structure is defined in `app/`
-- reusable presentation and interaction components live in `components/`
-- mock data sources live in `data/`
-- styling is handled with Tailwind CSS
-- chart rendering is powered by Recharts
+This Scribe phase updated documentation only:
 
-## Release handoff notes
+- `README.md`
+- `CHANGELOG.md`
+- `docs/IMPLEMENTATION_NOTES.md`
 
-- This Scribe phase updated documentation only.
-- No application source files, package metadata, route logic, or component logic were changed in this phase.
-- Automated PR flow should rely on the existing Grunt implementation and Pedant validation artifacts.
+No application source files, route files, component files, package metadata, or runtime logic were modified in this phase.
 
-## Recommended deployment / review checks
+## Release-readiness checklist
 
-- confirm `npm install` succeeds cleanly
-- confirm `npm run dev` starts on port `5173`
-- confirm `npm run build` completes and produces a deployable `dist/` output for the current project workflow
-- verify `/dashboard`, `/users`, and `/settings` render successfully
-- verify theme persistence after reload
-- verify settings save and restore from `localStorage`
-- verify user filtering and column sorting in-browser
+Recommended checks for automated PR completion or deployment signoff:
+
+1. Run `npm install`
+2. Run `npm run build`
+3. Confirm `.next/routes-manifest.json` exists after build completion
+4. Confirm Vercel uses the default Next.js output directory unless an explicit override is intentionally configured
+5. Smoke-test these routes:
+   - `/`
+   - `/dashboard`
+   - `/users`
+   - `/settings`
+   - `/departments/[slug]`
+6. Verify no regression to the PAP-440 dashboard functionality
+
+## Suggested PR/release summary
+
+Use language equivalent to:
+
+> Restore the default Next.js build output so Vercel can find `.next/routes-manifest.json` and package the dashboard deployment successfully.
 
 ## Handoff outcome
 
-Documentation is prepared for automated PR completion and deployment review for PAP-440.
+Documentation is ready for automated PR creation and deployment review for PAP-441.
