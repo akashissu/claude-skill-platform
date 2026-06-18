@@ -1,0 +1,26 @@
+import { UserRecord } from '@/types/admin';
+
+export const mockUsers: UserRecord[] = [
+  { id: 1, name: 'Ava Thompson', email: 'ava.thompson@northstar.io', role: 'Owner', status: 'Active', joinDate: '2024-01-12' },
+  { id: 2, name: 'Liam Carter', email: 'liam.carter@northstar.io', role: 'Admin', status: 'Active', joinDate: '2024-02-03' },
+  { id: 3, name: 'Sophia Nguyen', email: 'sophia.nguyen@northstar.io', role: 'Manager', status: 'Invited', joinDate: '2024-02-20' },
+  { id: 4, name: 'Noah Patel', email: 'noah.patel@northstar.io', role: 'Support', status: 'Active', joinDate: '2024-03-05' },
+  { id: 5, name: 'Mia Roberts', email: 'mia.roberts@northstar.io', role: 'Analyst', status: 'Active', joinDate: '2024-03-18' },
+  { id: 6, name: 'Ethan Brooks', email: 'ethan.brooks@northstar.io', role: 'Admin', status: 'Suspended', joinDate: '2024-04-01' },
+  { id: 7, name: 'Isabella Kim', email: 'isabella.kim@northstar.io', role: 'Manager', status: 'Active', joinDate: '2024-04-15' },
+  { id: 8, name: 'James Wilson', email: 'james.wilson@northstar.io', role: 'Support', status: 'Invited', joinDate: '2024-05-07' },
+  { id: 9, name: 'Charlotte Davis', email: 'charlotte.davis@northstar.io', role: 'Analyst', status: 'Active', joinDate: '2024-05-21' },
+  { id: 10, name: 'Benjamin Lee', email: 'benjamin.lee@northstar.io', role: 'Admin', status: 'Active', joinDate: '2024-06-02' },
+  { id: 11, name: 'Amelia Garcia', email: 'amelia.garcia@northstar.io', role: 'Support', status: 'Active', joinDate: '2024-06-19' },
+  { id: 12, name: 'Lucas Hernandez', email: 'lucas.hernandez@northstar.io', role: 'Manager', status: 'Active', joinDate: '2024-07-04' },
+  { id: 13, name: 'Harper Martin', email: 'harper.martin@northstar.io', role: 'Analyst', status: 'Invited', joinDate: '2024-07-18' },
+  { id: 14, name: 'Henry Young', email: 'henry.young@northstar.io', role: 'Support', status: 'Active', joinDate: '2024-08-09' },
+  { id: 15, name: 'Evelyn Clark', email: 'evelyn.clark@northstar.io', role: 'Admin', status: 'Active', joinDate: '2024-08-28' },
+  { id: 16, name: 'Alexander Lewis', email: 'alexander.lewis@northstar.io', role: 'Manager', status: 'Suspended', joinDate: '2024-09-12' },
+  { id: 17, name: 'Ella Walker', email: 'ella.walker@northstar.io', role: 'Analyst', status: 'Active', joinDate: '2024-09-30' },
+  { id: 18, name: 'Daniel Hall', email: 'daniel.hall@northstar.io', role: 'Support', status: 'Active', joinDate: '2024-10-14' },
+  { id: 19, name: 'Scarlett Allen', email: 'scarlett.allen@northstar.io', role: 'Manager', status: 'Active', joinDate: '2024-11-01' },
+  { id: 20, name: 'Matthew King', email: 'matthew.king@northstar.io', role: 'Analyst', status: 'Invited', joinDate: '2024-11-22' },
+  { id: 21, name: 'Grace Scott', email: 'grace.scott@northstar.io', role: 'Support', status: 'Active', joinDate: '2024-12-05' },
+  { id: 22, name: 'Sebastian Green', email: 'sebastian.green@northstar.io', role: 'Admin', status: 'Active', joinDate: '2024-12-16' },
+];

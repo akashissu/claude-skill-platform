@@ -1,53 +1,54 @@
-# PAP-438 Implementation Notes
+# PAP-440 Implementation Notes
 
 ## Summary
 
-PAP-438 ships a documentation-backed catalog app for the Cloude Skill platform. The implemented product experience frames Claude / agent skills as licensable enterprise modules, then exposes that catalog through a static Next.js frontend.
+PAP-440 ships a SaaS Admin Dashboard with a persistent admin shell, KPI overview visualizations, user management workflows, and browser-persisted settings. This document is the Scribe-phase deployment handoff and summarizes what reviewers and release automation should validate.
+
+## Delivered experience
+
+### Dashboard
+
+- 4 KPI stat cards surface key admin metrics
+- a line chart visualizes monthly trend data
+- a bar chart compares monthly performance data
+- chart data is sourced from static mock datasets
+
+### Users
+
+- searchable user management table
+- sortable columns for Name, Email, Role, Status, and Join Date
+- static mock user records support local/demo validation without backend dependencies
+
+### Settings
+
+- profile editing fields for name, email, and avatar URL
+- notification toggles for email notifications, product updates, and security alerts
+- form values and preferences persist via `localStorage`
 
 ## Architecture snapshot
 
-### App framework
-
-- Next.js app router in `app/`
-- shared presentation components in `components/`
-- typed data models in `types/`
-- catalog assembly and parsing logic in `lib/catalog.ts`
-
-### Data model
-
-`lib/catalog.ts` is the core integration point for the research brief.
-
-It combines:
-
-1. parsed department-suite sections from `.zero-human/ISSUE_SPEC.md`
-2. hard-coded industry overlay definitions
-3. structured pricing/package metadata
-4. source appendix links and activation-control guidance
-
-This keeps the UI mostly data-driven and makes future spec refreshes possible without reworking every page component.
-
-## Observed catalog shape
-
-From the current implementation:
-
-- 22 department suites are parsed from the issue brief
-- 22 industry overlays are defined in code
-- department modules and skill SKUs are rendered from normalized issue-spec content
-- source references are maintained as structured appendix data
+- route structure is defined in `app/`
+- reusable presentation and interaction components live in `components/`
+- mock data sources live in `data/`
+- styling is handled with Tailwind CSS
+- chart rendering is powered by Recharts
 
 ## Release handoff notes
 
-- Documentation was updated only, per Scribe role instructions.
-- No source files, route files, package metadata, or application logic were changed in this phase.
-- Automated PR flow should verify the standard Next.js checks:
-  - `npm run dev`
-  - `npm run build`
-- Recommended reviewer focus:
-  - route rendering for catalog pages
-  - completeness of department parsing from the issue spec
-  - copy alignment between rendered UI and the PAP-438 research brief
+- This Scribe phase updated documentation only.
+- No application source files, package metadata, route logic, or component logic were changed in this phase.
+- Automated PR flow should rely on the existing Grunt implementation and Pedant validation artifacts.
 
-## Risks / follow-up to monitor
+## Recommended deployment / review checks
 
-- The issue brief requested 20 industry overlays, while the current implementation defines 22 overlays. Confirm whether this is intentional scope expansion or drift.
-- README now documents the deployed experience, but final PR review should still confirm the page inventory matches product expectations.
+- confirm `npm install` succeeds cleanly
+- confirm `npm run dev` starts on port `5173`
+- confirm `npm run build` completes and produces a deployable `dist/` output for the current project workflow
+- verify `/dashboard`, `/users`, and `/settings` render successfully
+- verify theme persistence after reload
+- verify settings save and restore from `localStorage`
+- verify user filtering and column sorting in-browser
+
+## Handoff outcome
+
+Documentation is prepared for automated PR completion and deployment review for PAP-440.
