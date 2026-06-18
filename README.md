@@ -1,31 +1,33 @@
-# Cloude Skill Platform
+# SaaS Admin Dashboard
 
-A Next.js catalog experience for PAP-438 that turns the expanded Enterprise Claude Skills Catalog research into a browsable product surface for a project-manager / orchestration platform.
+A client-side SaaS admin dashboard for PAP-440 built with React 18, TypeScript, Tailwind CSS, Recharts, and a persistent application shell. The implementation delivers an admin-facing dashboard experience with KPI reporting, user management, settings persistence, and light/dark theme support.
 
 ## What was built
 
-This implementation presents the Cloude Skill platform as a commercial control plane for licensed AI skills:
+This ticket implements a three-route admin dashboard experience:
 
-- enterprise positioning for department suites, industry overlays, subscriptions, and skill credits
-- a homepage with hero, control-plane framing, catalog stats, pricing context, and source-backed narrative sections
-- dedicated pages for:
-  - department suites
-  - industry overlays
-  - pricing and packaging
-  - platform features
-  - about / research framing
-- data-driven catalog rendering sourced from the PAP-438 issue spec
-- a source appendix that ties the experience back to the research URLs in the brief
+- `/dashboard` — overview page with four KPI stat cards, a line chart, and a bar chart backed by static mock data
+- `/users` — searchable and sortable user management table with role, status, and join-date visibility
+- `/settings` — profile editing form and notification preference toggles persisted to `localStorage`
 
-## Product scope covered
+Shared UI delivered across the app includes:
 
-The app documents and visualizes:
+- persistent `Sidebar` navigation
+- persistent `TopBar`
+- `ThemeToggle` with persisted light/dark mode preference
+- reusable chart, table, and form components for dashboard administration workflows
 
-- 22 department suites parsed from the research brief
-- 22 industry overlay suites with paired departments and compliance focus
-- subscription packaging tiers from Starter through Regulated / partner plans
-- skill-credit bands from simple drafting through high-risk regulated workflows
-- activation and governance controls for approvals, auditing, and third-party skill review
+## Product coverage for PAP-440
+
+The current implementation covers the ticket acceptance criteria by providing:
+
+- exactly 4 KPI stat cards on the dashboard
+- chart visualizations rendered with Recharts using static monthly mock data
+- a user table populated with multi-row mock admin/user records
+- client-side text filtering by user name and email
+- ascending/descending sorting on all required table columns
+- profile and notification settings saved to and restored from `localStorage`
+- route-to-route navigation inside the shared app shell without requiring backend services
 
 ## Tech stack
 
@@ -33,6 +35,7 @@ The app documents and visualizes:
 - React 18
 - TypeScript
 - Tailwind CSS
+- Recharts
 
 ## Setup
 
@@ -50,7 +53,9 @@ Start the development server:
 npm run dev
 ```
 
-Then open <http://localhost:3000>.
+The current project is configured to run on:
+
+- <http://localhost:5173>
 
 ## Production build
 
@@ -68,33 +73,32 @@ npm run start
 
 ## Key implementation notes
 
-- `lib/catalog.ts` parses the PAP-438 source brief from `.zero-human/ISSUE_SPEC.md` and builds the department catalog at runtime.
-- Industry overlays, pricing tiers, credit bands, and source references are modeled as structured data and rendered through reusable UI components.
-- The app is intentionally content-heavy and research-driven, optimized for PM / GTM review rather than transactional workflows.
+- KPI, chart, and user data are sourced from static files in `data/`
+- settings and theme preferences persist in browser `localStorage`
+- shared layout/navigation components live in `components/`
+- application routes are composed through the current app-router structure in `app/`
 
-## Project structure
+## Important files
 
-- `app/` — Next.js app router pages
-- `components/` — reusable catalog and landing-page sections
-- `lib/` — catalog parsing and helper utilities
-- `types/` — shared TypeScript types
-- `docs/` — handoff and implementation documentation
+- `app/` — route structure and page composition
+- `components/` — shared dashboard UI components
+- `data/` — static mock KPI, chart, and user datasets
+- `docs/IMPLEMENTATION_NOTES.md` — release handoff summary for deployment/PR review
 
 ## Release-readiness checklist
 
 Before automated PR completion or deployment handoff, verify:
 
 - `npm install` succeeds
-- `npm run dev` starts without runtime errors
+- `npm run dev` starts without runtime errors on port `5173`
 - `npm run build` completes successfully
-- primary routes render:
-  - `/`
-  - `/departments`
-  - `/industry-overlays`
-  - `/pricing`
-  - `/features`
-  - `/about`
+- the following routes render correctly:
+  - `/dashboard`
+  - `/users`
+  - `/settings`
+- theme toggling and settings persistence behave correctly after reload
+- user search and column sorting behave as expected in the rendered table
 
 ## Ticket
 
-- PAP-438 — Cloude Skill platform
+- PAP-440 — SaaS Admin Dashboard
