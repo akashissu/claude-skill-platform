@@ -5,40 +5,20 @@ import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: {
-    default: 'SwiftTask — The Smart Productivity App',
-    template: '%s | SwiftTask',
+    default: 'Cloude Skill Platform',
+    template: '%s | Cloude Skill Platform',
   },
   description:
-    'SwiftTask helps you manage tasks, collaborate with your team, and stay focused. Available on iOS and Android.',
-  keywords: ['productivity', 'task management', 'team collaboration', 'mobile app', 'iOS', 'Android'],
-  authors: [{ name: 'SwiftTask Team' }],
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://swifttask.app',
-    siteName: 'SwiftTask',
-    title: 'SwiftTask — The Smart Productivity App',
-    description:
-      'SwiftTask helps you manage tasks, collaborate with your team, and stay focused. Available on iOS and Android.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'SwiftTask — The Smart Productivity App',
-    description:
-      'SwiftTask helps you manage tasks, collaborate with your team, and stay focused.',
-  },
+    'Enterprise catalog for department suites, industry overlays, pricing, activation rules, and source-backed Claude Skill packaging.',
+  keywords: ['Claude Skills', 'enterprise catalog', 'department suite', 'industry overlay', 'pricing', 'governance'],
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white min-h-screen flex flex-col">
+    <html lang="en">
+      <body className="min-h-screen bg-slate-950 text-slate-100 antialiased">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>
