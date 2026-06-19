@@ -1,6 +1,6 @@
 # SaaS Admin Dashboard
 
-A client-side SaaS admin dashboard built with Next.js 14, React 18, TypeScript, Tailwind CSS, and Recharts. PAP-441 resolves the deployment build failure by documenting the release-ready build configuration and confirming the app now builds with the default Next.js output expected by Vercel.
+A client-side SaaS admin dashboard built with Next.js 14, React 18, TypeScript, Tailwind CSS, and Recharts. PAP-442 resolves the Memory E2E build failure by documenting the `MOVIES` export fix in `lib/data.ts` and clarifying how to install, run, and verify the app builds successfully.
 
 ## Feature overview
 
@@ -17,16 +17,20 @@ Shared UI across the experience includes:
 - `ThemeToggle` with persisted light/dark mode preference
 - reusable chart, table, and form components for dashboard administration workflows
 
-## What was built for PAP-441
+## What was built for PAP-442
 
-PAP-441 addresses the failed deployment described in the Vercel logs:
+PAP-442 addresses the Memory E2E build failure caused by an unresolved `MOVIES` export from `lib/data.ts`.
 
-- production builds now use the default Next.js output directory expected by Vercel
-- the release artifact once again includes `.next/routes-manifest.json`
-- documentation now captures the deployment symptom, the fix intent, and the verification path for PR/release review
-- the existing dashboard functionality from PAP-440 remains the deployable product surface
+This ticket’s implementation restores and exposes the expected movie dataset export so code that imports `MOVIES` can resolve correctly during production compilation.
 
-In the failing build, Next.js compilation and static page generation completed successfully, but Vercel could not find `.next/routes-manifest.json` during final packaging. The implementation commit for PAP-441 restores the default Next.js build output so the platform can package the app correctly.
+Specifically, the release-ready behavior for PAP-442 is:
+
+- `lib/data.ts` exports `MOVIES` as a named export
+- the existing movie dataset remains available through the existing module surface
+- build-time imports that depend on `MOVIES` now resolve successfully
+- `npm run build` completes without the previous export-resolution failure
+
+This is a compatibility and release-readiness fix for the Memory E2E path, not a new end-user feature.
 
 ## Tech stack
 
@@ -76,9 +80,8 @@ For deployment or PR review, verify:
 
 - `npm install` succeeds cleanly
 - `npm run build` completes successfully
-- the Next.js build output is emitted to `.next/`
-- `.next/routes-manifest.json` exists after the build
-- Vercel is configured to use the default Next.js output directory unless explicitly overridden elsewhere
+- imports that reference `MOVIES` from `lib/data.ts` resolve without errors
+- the movie data helpers remain available to the app after the export fix
 - the following routes still render correctly:
   - `/`
   - `/dashboard`
@@ -88,19 +91,19 @@ For deployment or PR review, verify:
 
 ## Key implementation notes
 
-- KPI, chart, and user data are sourced from static files in `data/`
-- settings and theme preferences persist in browser `localStorage`
-- shared layout/navigation components live in `components/`
-- application routes are composed through the current app-router structure in `app/`
-- PAP-441 is a deployment-fix ticket focused on build output compatibility rather than new end-user features
+- the fix is centered on the module export surface in `lib/data.ts`
+- the dataset now exposes `MOVIES` as the expected named export for build-time consumers
+- the existing movie data shape and helper access patterns remain intact
+- PAP-442 is a build-fix ticket focused on export compatibility for Memory E2E verification
 
 ## Important files
 
-- `README.md` — feature overview and deployment-facing setup/run guidance
+- `README.md` — feature overview and build/release-facing setup and verification guidance
 - `CHANGELOG.md` — ticket-level release notes
-- `docs/IMPLEMENTATION_NOTES.md` — deployment and PR handoff summary
+- `docs/IMPLEMENTATION_NOTES.md` — handoff summary for automated PR completion
 
 ## Tickets
 
 - PAP-440 — SaaS Admin Dashboard
 - PAP-441 — Build failed fix / restore default Next.js build output for deployment
+- PAP-442 — Memory E2E — fix `MOVIES` export in `lib/data.ts`

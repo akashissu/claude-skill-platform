@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### PAP-442
+
+- documented the Memory E2E build fix for the unresolved `MOVIES` export in `lib/data.ts`
+- updated README guidance for installation, local run commands, production build commands, and release verification for the export-compatibility fix
+- captured deployment-facing handoff notes so automated PR/release review can validate that `npm run build` passes after the export restoration
+
 ### PAP-441
 
 - documented the build-failure fix that restores the default Next.js output expected by Vercel
